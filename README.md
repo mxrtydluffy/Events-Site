@@ -1,8 +1,8 @@
 # Events App
 
-To run this code, start by cloning this repository to your computer. Then in a terminal, navigate to the project folder.
+ACS 1220 - Authentication & Associations assignment going over the practices of SQLAlchemy models inorder to build a small web application. 
 
-To install dependencies, run:
+## To install dependencies, run:
 
 ```
 pip3 install -r requirements.txt
@@ -19,3 +19,5 @@ Then you can run the server:
 ```
 python3 app.py
 ```
+
+Original assignment found [here](https://github.com/Tech-at-DU/BEW-1.2-Events-Homework)
