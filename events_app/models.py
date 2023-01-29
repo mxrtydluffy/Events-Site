@@ -9,8 +9,13 @@ from sqlalchemy.orm import backref
 # - phone: String column
 # - events_attending: relationship to "Event" table with a secondary table
 
+# Usually 70 characters holds a full name in a field.
 class Guest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.VARCHAR(70), nullable=False)
+    email = db.Column(db.VARCHAR(100), unique = True, nullable=False)
+
+    # events_attending = db.t
 
 # TODO: Create a model called `Event` with the following fields:
 # - id: primary key
