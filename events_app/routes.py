@@ -46,9 +46,9 @@ def create():
         # datetime, then add and commit to the database
 
         new_event = Event(
-            title = new_event_title,
-            description = new_event_description,
-            date_and_time = date_and_time
+            title=new_event_title,
+            description=new_event_description,
+            date_and_time=date_and_time
         )
         db.session.add(new_event)
         db.session.commit()
@@ -89,10 +89,8 @@ def rsvp(event_id):
 
         # TODO: If the guest does exist, add the event to their 
         # events_attending, then commit to the database.
-        
         else:
             guest.events_attending.append(event)
-            db.session.add(guest)
             db.session.commit()
 
     else:
@@ -101,9 +99,9 @@ def rsvp(event_id):
 
         # TODO: Create a new guest with the given name, email, and phone, and 
         # add the event to their events_attending, then commit to the database.
-        new_guest = Guest(name=guest_name, email=guest_email, phone=guest_phone)
-        new_guest.events_attending.append(event)
-        db.session.add(new_guest)
+        guest = Guest(name=guest_name, email=guest_email, phone=guest_phone)
+        guest.events_attending.append(event)
+        db.session.add(guest)
         db.session.commit()
     
     flash('You have successfully RSVP\'d! See you there!')
@@ -114,5 +112,5 @@ def rsvp(event_id):
 def guest_detail(guest_id):
     # TODO: Get the guest with the given id and send to the template
     
-    guest = Guest.query.get(id=guest_id).first()
+    guest = Guest.query.get(guest_id)
     return render_template('guest_detail.html', guest=guest) 
