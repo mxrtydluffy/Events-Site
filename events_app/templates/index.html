@@ -12,20 +12,11 @@
 -->
 
 <div class="event-container">
-    <h3><a href="/event/{{ event.id }}">{{ event.title }}</a></h3>
-    <p><strong>Date and Time:</strong>{{ event.date_and_time }}</p>
-    <p><strong>Description:</strong>{{ event.description }}</p>
-    <p class="small-text">{{ event.guest|length }} are attending</p>
+    <h3><a href="/event/{{event.id}}">{{event.title}}</a></h3>
+    <p><strong>Date and Time:</strong>{{event.date_and_time}}</p>
+    <p><strong>Description:</strong>{{event.description}}</p>
+    <p class="small-text">{{event.guest|length}} are attending</p>
 </div>
-
-<!-- <div class="event-container">
-    <h3><a href="/event/2">Picnic at the Park</a></h3>
-    <p><strong>Date:</strong> Saturday June 12, 2021 at 2:00 PM</p>
-    <p><strong>Description:</strong> Bring a picnic blanket and meet new people!</p>
-    <p class="small-text">
-        10 attending
-    </p>
-</div> -->
 
 {% endfor %}
 

@@ -14,9 +14,11 @@ class Guest(db.Model):
     name = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(80), nullable=False)
     phone = db.Column(db.String(80), nullable=False)
+
     events_attending = db.relationship('Event', secondary='guest_event', back_populates='guests')
 
-
+    def __repr__(self):
+        return f'<Name: {self.name}'
 
 # TODO: Create a model called `Event` with the following fields:
 # - id: primary key
@@ -28,19 +30,16 @@ class Guest(db.Model):
 # STRETCH CHALLENGE: Add a field `event_type` as an Enum column that denotes the
 # type of event (Party, Study, Networking, etc)
 
-# class EventType(enum.Enum):
-#     PARTY = 1
-#     STUDY = 2
-#     NETWORKING = 3
-#     ETC = 4
-
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(80), nullable=False)
     date_and_time = db.Column(db.DateTime, nullable=False)
+
     guests = db.relationship('Guest', secondary='guest_event', back_populates='events_attending')
-    # event_type = db.Column(db.Enum(EventType), default=EventType.ETC)
+    
+    def __repr__(self):
+        return f'<Title: {self.title}'
 
 # TODO: Create a table `guest_event_table` with the following columns:
 # - event_id: Integer column (foreign key)

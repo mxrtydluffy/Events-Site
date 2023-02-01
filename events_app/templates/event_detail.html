@@ -9,13 +9,13 @@
     correct title, description, date, time, and number of guests
 -->
 
-<h1>{{ event.title }}</h1>
+<h1>{{event.title}}</h1>
 
-<p>{{ event.description }}</p>
+<p>{{event.description}}</p>
 
-<p><strong>Date & Time:</strong>{{ event.date_and_time }}</p>
+<p><strong>Date & Time:</strong>{{event.date_and_time}}</p>
 
-<p><strong>Number of Guests:</strong>{{ event.guests|length }}</p>
+<p><strong>Number of Guests:</strong>{{event.guests|length}}</p>
 
 <form method="POST">
     <fieldset>
@@ -60,7 +60,7 @@
 <h2>Guests Attending:</h2>
 <ul>
     {% for guest in event.guests %}
-    <li><a href="/guest{{ guest.id }}">{{ guest.name }}</a></li>
+    <li><a href="/guest{{guest.id}}">{{guest.name}}</a></li>
     {% endfor %}
 </ul>
 
