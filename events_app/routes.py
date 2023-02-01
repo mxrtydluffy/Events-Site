@@ -19,10 +19,9 @@ def index():
     """Show upcoming events to users!"""
 
     # TODO: Get all events and send to the template
-    
-    return render_template('index.html')
     events = Event.query.all()
-    return render_template('index.html', events=events)
+    
+    return render_template('index.html', events = events)
 
 
 @main.route('/create', methods=['GET', 'POST'])
@@ -45,11 +44,7 @@ def create():
         # TODO: Create a new event with the given title, description, & 
         # datetime, then add and commit to the database
 
-        new_event = Event(
-            title=new_event_title,
-            description=new_event_description,
-            date_and_time=date_and_time
-        )
+        new_event = Event(title = new_event_title, description = new_event_description, date_and_time = date_and_time, date = date, time = time)
         db.session.add(new_event)
         db.session.commit()
 
@@ -64,8 +59,8 @@ def event_detail(event_id):
     """Show a single event."""
 
     # TODO: Get the event with the given id and send to the template
-    
     event = Event.query.get(event_id)
+
     return render_template('event_detail.html', event=event)
 
 
@@ -84,14 +79,15 @@ def rsvp(event_id):
 
         guest = Guest.query.filter_by(name=guest_name).first()
         if guest is None:
-            error = "Error"
+            error = "Error! Guest was not found"
             flash(error)
-
-        # TODO: If the guest does exist, add the event to their 
-        # events_attending, then commit to the database.
         else:
             guest.events_attending.append(event)
             db.session.commit()
+            flash("Success! You are added to the guest list!")
+
+        # TODO: If the guest does exist, add the event to their 
+        # events_attending, then commit to the database.
 
     else:
         guest_email = request.form.get('email')
@@ -99,7 +95,7 @@ def rsvp(event_id):
 
         # TODO: Create a new guest with the given name, email, and phone, and 
         # add the event to their events_attending, then commit to the database.
-        guest = Guest(name=guest_name, email=guest_email, phone=guest_phone)
+        guest = Guest(name = guest_name, email = guest_email, phone = guest_phone)
         guest.events_attending.append(event)
         db.session.add(guest)
         db.session.commit()
@@ -112,5 +108,5 @@ def rsvp(event_id):
 def guest_detail(guest_id):
     # TODO: Get the guest with the given id and send to the template
     
-    guest = Guest.query.get(guest_id)
-    return render_template('guest_detail.html', guest=guest) 
+    guest = Guest.query.filter_by(id = guest_id).first()
+    return render_template('guest_detail.html', guest = guest) 
